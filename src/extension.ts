@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (editor) {
             const line = editor.selection.active.line + 1;
             const file = editor.document.fileName;
-            const text = editor.document.getText(new vscode.Range(line, 0, line + 1, 0));
+            const text = editor.document.getText(new vscode.Range(line - 1, 0, line, 0));
 
             bookmarkProvider.addBookmark(file, line, text);
             vscode.window.showInformationMessage(`Закладка добавлена в ${file}:${line}`);
