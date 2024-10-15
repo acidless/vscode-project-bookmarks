@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { Bookmark, BookmarkProvider, BookmarkData } from './bookmarkProvider';
+import { Bookmark, BookmarkProvider } from './bookmarkProvider';
 
 let bookmarkProvider: BookmarkProvider;
 
@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
     let addBookmark = vscode.commands.registerCommand('extension.addBookmark', () => {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
-            const line = editor.selection.active.line;
+            const line = editor.selection.active.line + 1;
             const file = editor.document.fileName;
             const text = editor.document.getText(new vscode.Range(line, 0, line + 1, 0));
 
