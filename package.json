@@ -1,0 +1,73 @@
+{
+  "name": "project-bookmarks",
+  "displayName": "project-bookmarks",
+  "description": "Quick and easy bookmarks in your projects.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+        "explorer": [
+          {
+            "id": "projectBookmarks",
+            "name": "Bookmarks"
+          }
+        ]
+    },
+    "commands": [
+      {
+        "command": "extension.addBookmark",
+        "title": "Add Bookmark"
+      },
+      {
+        "command": "extension.removeBookmark",
+        "title": "Remove Bookmark"
+      },
+      {
+        "command": "extension.goToBookmark",
+        "title": "Go to Bookmark"
+      }
+    ],
+    "menus": {
+        "view/item/context": [
+            {
+                "command": "extension.removeBookmark",
+                "when": "view == projectBookmarks && viewItem == bookmarkItem",
+                "group": "navigation"
+            }
+        ]
+    },
+    "keybindings": [
+      {
+        "command": "extension.addBookmark",
+        "key": "ctr+shift+b",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.8",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.11.1",
+    "typescript": "^5.6.2"
+  }
+}
